@@ -7,6 +7,7 @@ import Product from "../Products/Products";
 import HeaderCartButton from "./HeaderCartButton";
 import Footer from "./Footer";
 import Card from "./Card";
+import Home from "../../Pages/Home";
 const Navs = (props) =>{
 
     
@@ -32,7 +33,11 @@ const Navs = (props) =>{
       </Route> 
     
     </Routes>
-    
+    <Routes>
+    <Route path="/" element={<Product />} >
+      
+    </Route>
+    </Routes>
    
    <Routes>
     <Route path="/Store" element={<Product />} >
@@ -42,7 +47,7 @@ const Navs = (props) =>{
   
     <Routes>
     
-    <Route path="/home" element={<Product/>}>
+    <Route path="/home" element={<Home/>}>
     
     </Route>
     

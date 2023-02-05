@@ -23,8 +23,8 @@ const ProductItem = (props) => {
   return (
     <li className={classes.meal}>
       <div>
-        <h3>{props.title}</h3>
-        <div className={classes.description}><img style={{width:"20%"}}src={props.imageUrl} /></div>
+ x        <h3>{props.title}</h3>
+        <div className={classes.description}><img style={{width:"20%"}} src={props.imageUrl} /></div>
         <div className={classes.price}>{price}</div>
       </div>
       <div>

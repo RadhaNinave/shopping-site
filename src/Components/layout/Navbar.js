@@ -3,7 +3,7 @@ import {Navbar, Container,Alert, Button,Nav} from 'react-bootstrap';
 import { Router ,Route,Switch,Link, NavLink, Routes} from "react-router-dom";
 import About from "../../Pages/About";
 import Product from "../Products/Products";
-
+import ContactUs from "../../Pages/ContactUs";
 import HeaderCartButton from "./HeaderCartButton";
 import Footer from "./Footer";
 import Card from "./Card";
@@ -21,6 +21,8 @@ const Navs = (props) =>{
         <NavLink to="/home">Home</NavLink >
         <NavLink to="/Store">Store</NavLink >
        <NavLink to ="/About">About </NavLink>
+        <NavLink to ="/Contact">Contact Us </NavLink>
+
        
      <HeaderCartButton  onClick={props.onShowCart}/>
       </Container>
@@ -41,6 +43,11 @@ const Navs = (props) =>{
    
    <Routes>
     <Route path="/Store" element={<Product />} >
+      
+    </Route>
+    </Routes>
+    <Routes>
+    <Route path="/Contact" element={<ContactUs />} >
       
     </Route>
     </Routes>

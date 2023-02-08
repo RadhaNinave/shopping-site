@@ -1,6 +1,7 @@
 import AvailableProducts from "./AvailableProducts";
 import { Container,Row } from "react-bootstrap";
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 const Product =(props) =>{
    /* const dummy_products = [
         {
@@ -58,7 +59,7 @@ const Product =(props) =>{
     return(
       <Fragment>
       
-      <AvailableProducts />
+     <li> <AvailableProducts /></li> 
     </Fragment>
     )
 }

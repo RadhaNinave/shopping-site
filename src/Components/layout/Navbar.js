@@ -8,6 +8,7 @@ import HeaderCartButton from "./HeaderCartButton";
 import Footer from "./Footer";
 import Card from "./Card";
 import Home from "../../Pages/Home";
+import ProductDetail from "../Products/ProductDetail";
 const Navs = (props) =>{
 
     
@@ -28,37 +29,36 @@ const Navs = (props) =>{
       </Container>
     </Navbar>
     <Card />
+    
    <Routes>
    
     <Route path="/About" element={<About/>} >
      
       </Route> 
     
-    </Routes>
-    <Routes>
-    <Route path="/" element={<Product />} >
-      
-    </Route>
-    </Routes>
-   
-   <Routes>
+    
     <Route path="/Store" element={<Product />} >
       
     </Route>
-    </Routes>
-    <Routes>
+   
+      <Route path='/Store/:productId' element={<ProductDetail key={props.id} products={props.product}/>}></Route>
+      
+  
+    <Route path="/Store" element={<Product />} >
+      
+    </Route>
+    
     <Route path="/Contact" element={<ContactUs />} >
       
     </Route>
-    </Routes>
-  
-    <Routes>
+    
     
     <Route path="/home" element={<Home/>}>
     
     </Route>
     
    </Routes>
+   
   <Footer />
     
     </Fragment>

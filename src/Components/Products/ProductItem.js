@@ -3,6 +3,7 @@ import ProductForm from './ProductForm';
 import classes from './MealsItem.module.css';
 import { useContext } from 'react';
 import CartContext from '../Store/Cart_Context';
+import { Link } from 'react-router-dom';
 
 
 const ProductItem = (props) => {
@@ -24,7 +25,7 @@ const ProductItem = (props) => {
     <li className={classes.meal}>
       <div>
  x        <h3>{props.title}</h3>
-        <div className={classes.description}><img style={{width:"20%"}} src={props.imageUrl} /></div>
+       <Link to ={`/Store/${props.id}`}> <div className={classes.description}><img style={{width:"20%"}} src={props.imageUrl} /></div></Link>
         <div className={classes.price}>{price}</div>
       </div>
       <div>

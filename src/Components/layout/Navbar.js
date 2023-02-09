@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Card from "./Card";
 import Home from "../../Pages/Home";
 import ProductDetail from "../Products/ProductDetail";
+import Login from "../../Pages/Login";
 const Navs = (props) =>{
 
     
@@ -23,6 +24,8 @@ const Navs = (props) =>{
         <NavLink to="/Store">Store</NavLink >
        <NavLink to ="/About">About </NavLink>
         <NavLink to ="/Contact">Contact Us </NavLink>
+        <NavLink to ="/login">Login</NavLink>
+        <NavLink to ="/logout">Logout</NavLink>
 
        
      <HeaderCartButton  onClick={props.onShowCart}/>
@@ -31,6 +34,12 @@ const Navs = (props) =>{
     <Card />
     
    <Routes>
+   <Route path="/About" element={<About/>} >
+     
+      </Route> 
+      <Route path="/" element={<Product/>} >
+     
+     </Route> 
    
     <Route path="/About" element={<About/>} >
      
@@ -51,7 +60,9 @@ const Navs = (props) =>{
     <Route path="/Contact" element={<ContactUs />} >
       
     </Route>
-    
+    <Route path="/login" element={<Login />}>
+             
+            </Route>
     
     <Route path="/home" element={<Home/>}>
     

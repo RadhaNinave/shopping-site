@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import {Navbar, Container,Alert, Button,Nav} from 'react-bootstrap';
 import { Router ,Route,Switch,Link, NavLink, Routes} from "react-router-dom";
 import About from "../../Pages/About";
@@ -10,8 +10,10 @@ import Card from "./Card";
 import Home from "../../Pages/Home";
 import ProductDetail from "../Products/ProductDetail";
 import Login from "../../Pages/Login";
+import AuthContext from "../Store/AuthContext";
 const Navs = (props) =>{
-
+        const authCtx =  useContext(AuthContext);
+        const isLoggedIn=authCtx.isLoggedIn;
     
     return(
       
@@ -20,12 +22,14 @@ const Navs = (props) =>{
         <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
         <Nav.Link as ={Link} to ={"/Home"}></Nav.Link>
-        <NavLink to="/home">Home</NavLink >
-        <NavLink to="/Store">Store</NavLink >
+      {!isLoggedIn && <NavLink to="/home">Home</NavLink >}  
+        {!isLoggedIn &&  <NavLink to="/Store">Store</NavLink >}
+       
        <NavLink to ="/About">About </NavLink>
         <NavLink to ="/Contact">Contact Us </NavLink>
         <NavLink to ="/login">Login</NavLink>
-        <NavLink to ="/logout">Logout</NavLink>
+        {isLoggedIn && <NavLink to ="/logout">Logout</NavLink> }
+        
 
        
      <HeaderCartButton  onClick={props.onShowCart}/>

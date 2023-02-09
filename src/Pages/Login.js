@@ -2,11 +2,14 @@ import React, { useState, useRef, useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
+import AuthContext from '../Components/Store/AuthContext';
 const Login = () => {
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
     const [isLogin, setIsLogin] = useState(true)
     const [isLoading, setIsLoding] = useState(false);
+
+    const authCtx=useContext(AuthContext);
 
     const switchAuthModeHandler = () => {
         setIsLogin((prev) => !prev)
@@ -27,29 +30,35 @@ const Login = () => {
         fetch(url , {
             method:'POST',
             body : JSON.stringify({
-                email: enteredEmail,
-                password : enteredPassword,
-                returnSecureToken : true
+            email: enteredEmail,
+            password : enteredPassword,
+            returnSecureToken : true
             }),
             headers : {'Content-Type' : 'application/json'},
          }).then(res =>{
-            return res.json();
-         }).then(data=>{
-            if(isLogin){
-                console.log("Login Completed")
-                //console.log(data.idToken)
-                
-                alert("Log In Successful")
-            }else{
-                 console.log("Sign up Completed")
-                 alert("Sign Up Successful")
-                 
+            setIsLoding(false);
+            if(res.ok){
+                return res.json();
+
             }
-         }).catch(err=>{
-            alert(err.message)
-           
-         })
-    
+        
+            else{
+                 return res.json().then((data)=>{
+                    let errorMessage="Authentication failed";
+                    if(data && data.error && data.error.message){
+                        errorMessage=data.error.message;
+                    }
+                    
+                    throw new Error(errorMessage)
+                 })
+                }
+            }).then(data =>{
+                authCtx.login(data.idToken);
+            }).catch(err =>{
+                alert(err.message);
+
+            })  
+          
     
     };
 
@@ -72,11 +81,11 @@ return (
             {!isLoading && <Button variant="primary" type="submit">
                 {isLogin ? 'Log In' : "Sign Up"}
             </Button>}
+            {isLoading && <p>Sending Request...</p>}
           
-            {!isLoading && <p></p>}
             <div className='text-center pt-3'>
                 <button type='button' onClick={switchAuthModeHandler}>
-
+               
                     {isLogin ? 'Create new account' : 'Login with existing account'}
                 </button>
             </div>

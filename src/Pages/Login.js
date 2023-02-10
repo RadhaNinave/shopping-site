@@ -94,7 +94,7 @@ return (
                 </button>
             </div>
             <div className='text-center pt-3'>
-            <Link to="/ResetPassword"> Reset <ResetPassword /> </Link>
+            <Link to="/ResetPassword"> Reset </Link>
             
             </div>
          

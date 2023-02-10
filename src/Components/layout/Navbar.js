@@ -12,10 +12,16 @@ import ProductDetail from "../Products/ProductDetail";
 import Login from "../../Pages/Login";
 import AuthContext from "../Store/AuthContext";
 import ResetPassword from "../../Pages/ResetPassword";
+import { useNavigate } from "react-router-dom";
 const Navs = (props) =>{
         const authCtx =  useContext(AuthContext);
         const isLoggedIn=authCtx.isLoggedIn;
-    
+        const navigate=useNavigate();
+        const logoutHandler = () =>{
+          navigate('/login');
+          authCtx.logout();
+          
+        }
     return(
       
         <Fragment>
@@ -23,13 +29,13 @@ const Navs = (props) =>{
         <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
         <Nav.Link as ={Link} to ={"/Home"}></Nav.Link>
-      {!isLoggedIn && <NavLink to="/home">Home</NavLink >}  
-        {!isLoggedIn &&  <NavLink to="/Store">Store</NavLink >}
+      {isLoggedIn && <NavLink to="/home">Home</NavLink >}  
+        {isLoggedIn &&  <NavLink to="/Store">Store</NavLink >}
        
        <NavLink to ="/About">About </NavLink>
         <NavLink to ="/Contact">Contact Us </NavLink>
-        <NavLink to ="/login">Login</NavLink>
-        {isLoggedIn && <NavLink to ="/logout">Logout</NavLink> }
+      {!isLoggedIn && <NavLink to ="/login">Login</NavLink>}
+        {isLoggedIn && <NavLink to ="/logout" onClick={logoutHandler}  >Logout</NavLink> }
         
 
        
@@ -68,7 +74,10 @@ const Navs = (props) =>{
     <Route path="/login" element={<Login />}>
              
             </Route>
-    
+            <Route path="/logout" element={<Login />}>
+            
+             </Route>
+     
     <Route path="/home" element={<Home/>}>
     
     </Route>

@@ -1,16 +1,19 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, } from 'react'
+import {Link, Route, Routes, useNavigate} from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/esm/Container';
 import AuthContext from '../Components/Store/AuthContext';
+import { NavLink } from 'react-bootstrap';
+import ResetPassword from './ResetPassword';
 const Login = () => {
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
     const [isLogin, setIsLogin] = useState(true)
     const [isLoading, setIsLoding] = useState(false);
-
+    
     const authCtx=useContext(AuthContext);
-
+    const history=useNavigate();
     const switchAuthModeHandler = () => {
         setIsLogin((prev) => !prev)
     }
@@ -54,6 +57,7 @@ const Login = () => {
                 }
             }).then(data =>{
                 authCtx.login(data.idToken);
+                history('/');
             }).catch(err =>{
                 alert(err.message);
 
@@ -89,6 +93,11 @@ return (
                     {isLogin ? 'Create new account' : 'Login with existing account'}
                 </button>
             </div>
+            <div className='text-center pt-3'>
+            <Link to="/ResetPassword"> Reset <ResetPassword /> </Link>
+            
+            </div>
+         
 
         </Form>
     </Container>

@@ -11,6 +11,7 @@ import Home from "../../Pages/Home";
 import ProductDetail from "../Products/ProductDetail";
 import Login from "../../Pages/Login";
 import AuthContext from "../Store/AuthContext";
+import ResetPassword from "../../Pages/ResetPassword";
 const Navs = (props) =>{
         const authCtx =  useContext(AuthContext);
         const isLoggedIn=authCtx.isLoggedIn;
@@ -69,6 +70,9 @@ const Navs = (props) =>{
             </Route>
     
     <Route path="/home" element={<Home/>}>
+    
+    </Route>
+    <Route path="/ResetPassword" element={<ResetPassword/>}>
     
     </Route>
     

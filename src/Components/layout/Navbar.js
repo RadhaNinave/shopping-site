@@ -17,6 +17,7 @@ const Navs = (props) =>{
         const authCtx =  useContext(AuthContext);
         const isLoggedIn=authCtx.isLoggedIn;
         const navigate=useNavigate();
+        
         const logoutHandler = () =>{
           navigate('/login');
           authCtx.logout();
@@ -31,7 +32,7 @@ const Navs = (props) =>{
         <Nav.Link as ={Link} to ={"/Home"}></Nav.Link>
       {isLoggedIn && <NavLink to="/home">Home</NavLink >}  
         {isLoggedIn &&  <NavLink to="/Store">Store</NavLink >}
-       
+       {}
        <NavLink to ="/About">About </NavLink>
         <NavLink to ="/Contact">Contact Us </NavLink>
       {!isLoggedIn && <NavLink to ="/login">Login</NavLink>}
@@ -57,7 +58,7 @@ const Navs = (props) =>{
       </Route> 
     
     
-    <Route path="/Store" element={<Product />} >
+  <Route path="/Store" element={<Product />} >
       
     </Route>
    

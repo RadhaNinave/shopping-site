@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, } from 'react'
+import React, { useState, useRef, useContext, useEffect, } from 'react'
 import {Link, Route, Routes, useNavigate} from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/esm/Container';
 import AuthContext from '../Components/Store/AuthContext';
 import { NavLink } from 'react-bootstrap';
 import ResetPassword from './ResetPassword';
-const Login = () => {
+const Login = (props) => {
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
     const [isLogin, setIsLogin] = useState(true)
@@ -65,6 +65,26 @@ const Login = () => {
           
     
     };
+    //adding autoLogout 
+    const logoutTimerIdRef = useRef(null);
+    useEffect(()=>{
+        const autoLogout = ()=>{
+            if(document.visibilityState==='hidden')
+            {
+              const  timeOut =window.setTimeout(props.logoutHandler,5 * 60 * 1000);
+              logoutTimerIdRef.current=timeOut;
+            }
+            else{
+                window.clearTimeout(logoutTimerIdRef.current)
+            }
+        }
+        document.addEventListener('visibilitychange', autoLogout);
+
+        return () => {
+          document.removeEventListener('visibilitychange', autoLogout);
+        };
+      }, [props.logoutHandler]);
+    
 
 
 return (

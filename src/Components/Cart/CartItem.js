@@ -11,7 +11,7 @@ const CartItem = (props) => {
   const deleteItem=()=>{
     const deleteItem={
       id:parseInt(props.id),
-      quantity : parseInt(props.amount),
+      quantity : props.quantity,
       price : parseInt(props.price)
     }
     cartCtx.removeItem(deleteItem)
@@ -24,6 +24,7 @@ const CartItem = (props) => {
         </div>
         <div className='cartitem-price'>{props.price}</div>
         <div className='cartitem-button'>
+            <span className='cartitem-quantity'>{props.quantity}</span>
             <span className='cartitem-quantity'>{props.total}</span>
             <button onClick={deleteItem} >Delete</button>
         </div>

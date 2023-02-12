@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react";
 import {Navbar, Container,Alert, Button,Nav} from 'react-bootstrap';
-import { Router ,Route,Switch,Link, NavLink, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route,Switch,Link, NavLink, Routes} from "react-router-dom";
 import About from "../../Pages/About";
 import Product from "../Products/Products";
 import ContactUs from "../../Pages/ContactUs";
@@ -23,6 +23,11 @@ const Navs = (props) =>{
           authCtx.logout();
           
         }
+       if(isLoggedIn)
+       {
+        navigate('/Store');
+       }
+      
     return(
       
         <Fragment>

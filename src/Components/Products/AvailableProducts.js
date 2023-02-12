@@ -9,7 +9,7 @@ const dummy_cart = [
     {
       id:1,
       title: "Colors",
-
+      quantity:1,
       price: 100,
 
       imageUrl:
@@ -19,7 +19,7 @@ const dummy_cart = [
     {
       id:2,
       title: "Black and white Colors",
-
+      quantity:1,
       price: 50,
 
       imageUrl:
@@ -29,7 +29,7 @@ const dummy_cart = [
     {
       id:3,
       title: "Yellow and Black Colors",
-
+      quantity:1,
       price: 70,
 
       imageUrl:
@@ -39,7 +39,7 @@ const dummy_cart = [
     {
       id:4,
       title: "Blue Color",
-
+      quantity:1,
       price: 100,
 
       imageUrl:

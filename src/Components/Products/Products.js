@@ -2,8 +2,10 @@ import AvailableProducts from "./AvailableProducts";
 import { Container,Row } from "react-bootstrap";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import CartContext from "../Store/Cart_Context";
+import { useEffect,useContext } from "react";
 const Product =(props) =>{
-   /* const dummy_products = [
+    const dummy_products = [
         {
           id : 1,
           title: "Colors",
@@ -44,22 +46,37 @@ const Product =(props) =>{
             "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
         },
       ];
-     
-    return(
-        <div>
-           <Container>
-      <Row>
-        {dummy_products.map(item=><AvailableProducts key={item.id} prod={item} />)}
-      </Row>
-    </Container>
-        </div>
+      const cartCtx = useContext(CartContext);
 
-    );
-}*/
-    return(
+ useEffect(()=>{
+  const email = localStorage.getItem("email");
+  const str = email.replace("@", "");
+  const newstr = str.replace(".", "");
+
+  fetch(`https://crudcrud.com/api/5adf7916597741e1beead896c0f5cbac/cart${newstr}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).then(res=>{
+    return res.json(); 
+  }).then(data=>{
+    let totalAmount =0
+     data.forEach(element => {
+         totalAmount += element.quantity*element.price
+     });
+    cartCtx.setData(data , totalAmount);
+  }).catch(error=>{
+    console.log(error.message)
+  })
+ },[])
+ 
+     return(
       <Fragment>
       
-     <li> <AvailableProducts /></li> 
+      <AvailableProducts  /> 
     </Fragment>
     )
 }

@@ -56,6 +56,7 @@ const Login = (props) => {
                  })
                 }
             }).then(data =>{
+                localStorage.setItem('email' ,enteredEmail )
                 authCtx.login(data.idToken);
                 history('/');
             }).catch(err =>{
@@ -114,7 +115,7 @@ return (
                 </button>
             </div>
             <div className='text-center pt-3'>
-            <Link to="/ResetPassword"> Reset </Link>
+            <Link to="/ResetPassword"> Forgot Password</Link>
             
             </div>
          

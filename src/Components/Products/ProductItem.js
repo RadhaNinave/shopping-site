@@ -10,13 +10,13 @@ const ProductItem = (props) => {
  const cartCtx=useContext(CartContext)
   const price = `$${props.price.toFixed(2)}`;
 
-  const addToCartHandler = amount =>{
+  const addToCartHandler = quantity =>{
     cartCtx.addItem({
       id:props.id,
       title:props.title,
       imageUrl:props.imageUrl,
       price:props.price,
-      amount:amount
+      quantity:quantity
     });
 
   };
@@ -26,7 +26,7 @@ const ProductItem = (props) => {
       <div>
  x        <h3>{props.title}</h3>
        <Link to ={`/Store/${props.id}`}> <div className={classes.description}><img style={{width:"20%"}} src={props.imageUrl} /></div></Link>
-        <div className={classes.price}>{price}</div>
+              <div className={classes.price}>{price}</div>
       </div>
       <div>
         <ProductForm onAddToCart = {addToCartHandler} />

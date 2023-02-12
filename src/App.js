@@ -70,7 +70,7 @@ const App =(props) => {
     <CartProvider>
      
     {cartIsShow && <Cart onClose={hideCartHandler}/>}
-     <NavBar product={dummy_cart}onShowCart = {showCartHandler}/>
+     <NavBar product={dummy_cart} onShowCart = {showCartHandler}/>
     
       </CartProvider>
       
